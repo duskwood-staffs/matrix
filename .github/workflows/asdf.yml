@@ -9,4 +9,4 @@ jobs:
       - name: Boo
         run: echo "$FOO"
         env:
-          FOO: openssl rand -hex 12
+          FOO: echo "$(openssl rand -hex 12)"
