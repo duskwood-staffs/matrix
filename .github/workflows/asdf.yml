@@ -1,0 +1,12 @@
+name: 'hohoho'
+
+on: ['push']  
+
+jobs:
+  a:
+    runs-on: macos-latest
+    steps:
+      - name: Boo
+        run: echo "$FOO"
+        env:
+          FOO: openssl rand -hex 12
