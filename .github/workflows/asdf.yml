@@ -6,7 +6,8 @@ jobs:
   a:
     runs-on: macos-latest
     steps:
+      - name: Generate Random String
+        run: echo "FOO=$(openssl rand -hex 12)" >> $GITHUB_ENV
+
       - name: Boo
         run: echo "$FOO"
-        env:
-          FOO: echo "$(openssl rand -hex 12)"
