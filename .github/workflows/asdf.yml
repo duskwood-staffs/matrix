@@ -1,13 +1,30 @@
 name: 'hohoho'
 
-on: ['push']  
+on:
+  workflow_dispatch:
+    inputs:
+      zoo:
+        required: true
+        type: string
+        default: s
 
 jobs:
   a:
     runs-on: macos-latest
     steps:
-      - name: Generate Random String
-        run: echo "FOO=$(openssl rand -hex 12)" >> $GITHUB_ENV
+      - name: Set FPP based on input
+        run: |
+          case "${{ github.event.inputs.zoo }}" in
+            "s"|"a")
+              echo "FPP=zi" >> $GITHUB_ENV
+              ;;
+            "b")
+              echo "FPP=qi" >> $GITHUB_ENV
+              ;;
+            *)
+              echo "FPP=unknown" >> $GITHUB_ENV
+              ;;
+          esac
 
-      - name: Boo
-        run: echo "$FOO"
+      - name: Print FPP
+        run: echo "$FPP"
